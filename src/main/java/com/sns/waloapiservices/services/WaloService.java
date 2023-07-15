@@ -5,7 +5,7 @@ import com.sns.waloapiservices.model.*;
 
 public interface WaloService {
     BaseResponse<Object> postArticle(PostArticles postArticles);
-    BaseResponse<Object> postAccident(Accidents accidents);
+    BaseResponse<Object> postAccidents(Accidents accidents);
 
     BaseResponse<Object> postAppliedJobs(AppliedJobs appliedJobs);
 

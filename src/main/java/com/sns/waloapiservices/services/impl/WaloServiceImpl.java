@@ -36,7 +36,7 @@ public class WaloServiceImpl implements WaloService {
     private AccidentsRepository accidentsRepository;
 
     @Override
-    public BaseResponse<Object> postAccidents(Accidents accidents) {
+    public  BaseResponse<Object> postAccidents(Accidents accidents) {
         try {
             Accidents optionalAccidents = accidentsRepository.save(accidents);
             return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(optionalAccidents).errorDesc(null).result("Reported Accidents").build();
@@ -50,9 +50,9 @@ public class WaloServiceImpl implements WaloService {
     private AppliedJobsRepository appliedJobsRepository;
 
     @Override
-    public BaseResponse<Object> postappliedjobs (AppliedJobs appliedJobs){
+    public BaseResponse<Object> postAppliedJobs(AppliedJobs appliedJobs){
         try{
-            AppliedJobs optionalAppliedJobs =  AppliedJobsRepository.save(appliedJobs);
+            AppliedJobs optionalAppliedJobs =  appliedJobsRepository.save(appliedJobs);
             return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(optionalAppliedJobs).errorDesc(null).result("Apply for Jobs").build();
         }
         catch (Exception exception){
@@ -66,8 +66,8 @@ public class WaloServiceImpl implements WaloService {
     @Override
     public BaseResponse<Object> postBankDetails (BankDetails bankDetails){
         try{
-            BankDetails optionalAppliedJobs =  AppliedJobsRepository.save(appliedJobs);
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(optionalAppliedJobs).errorDesc(null).result("Apply for Jobs").build();
+            BankDetails optionalAppliedJobs =  bankDetailsRepository.save(bankDetails);
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(optionalBankDetails).errorDesc(null).result("Bank Details").build();
         }
         catch (Exception exception){
             return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();

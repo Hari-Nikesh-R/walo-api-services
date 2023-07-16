@@ -71,6 +71,33 @@ public class WaloServiceImpl implements WaloService {
     }
 
     @Autowired
+    private BloodBankRepository bloodBankRepository;
+
+    @Override
+    public BaseResponse<Object> postBloodBank (BloodBank bloodBank){
+        try{
+            BloodBank optionalBloodBank = bloodBankRepository.save(bloodBank);
+            return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalBloodBank).errorDesc(null).result("Bank Details").build();
+        }
+        catch (Exception exception){
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+        }
+    }
+    @Autowired
+    private FundsRepository fundsRepository;
+
+    @Override
+    public BaseResponse<Object> postFunds (Funds funds){
+        try{
+            Funds optionalFunds = fundsRepository.save(funds);
+            return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalFunds).errorDesc(null).result("Bank Details").build();
+        }
+        catch (Exception exception){
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+        }
+    }
+
+    @Autowired
     private LegalDiscussionRepository legalDiscussionRepository;
 
     @Override

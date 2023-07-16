@@ -24,7 +24,7 @@ import java.security.PublicKey;
     @Override
     public BaseResponse<Object> postArticle(PostArticles postArticles, String token) {
         try {
-            tokenValidator.validateByToken(token);
+            postArticles.setUserEmail(tokenValidator.validateByToken(token));
             PostArticles optionalPostArticles = postArticleRepository.save(postArticles);
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalPostArticles).errorDesc(null).result("Posted article").build();
         }

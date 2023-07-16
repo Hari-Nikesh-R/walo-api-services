@@ -66,7 +66,7 @@ public class WaloServiceImpl implements WaloService {
     @Override
     public BaseResponse<Object> postBankDetails (BankDetails bankDetails){
         try{
-            BankDetails optionalAppliedJobs =  bankDetailsRepository.save(bankDetails);
+            BankDetails optionalBankDetails =  bankDetailsRepository.save(bankDetails);
             return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(optionalBankDetails).errorDesc(null).result("Bank Details").build();
         }
         catch (Exception exception){

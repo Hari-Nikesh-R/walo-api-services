@@ -10,5 +10,5 @@ public class PostArticles {
     @Id
     private String id;
     private String article;
-    private Integer userId;
+    private Integer userEmail;
 }

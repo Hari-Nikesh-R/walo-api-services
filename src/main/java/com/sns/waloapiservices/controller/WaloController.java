@@ -21,26 +21,26 @@ public class WaloController {
 
     @PostMapping(value = "/applied-jobs")
     public BaseResponse<Object> postAppliedJobs(@RequestBody AppliedJobs appliedJobs, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postAppliedJobs(appliedJobs, token.substring(7));
+        return waloService.postAppliedJobs(appliedJobs, token);
     }
 
     @GetMapping(value = "/jobs")
     public BaseResponse<Object> getAppliedJobs( @RequestHeader(AUTHORIZATION) String token) {
-        return waloService.getAppliedJobs(token.substring(7));
+        return waloService.getAppliedJobs(token);
     }
 
     @PostMapping(value = "/bank-details")
     public BaseResponse<Object> postBankDetails(@RequestBody BankDetails bankDetails, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postBankDetails(bankDetails,token.substring(7));
+        return waloService.postBankDetails(bankDetails,token);
     }
 
     @PostMapping(value ="/blood-bank")
     public BaseResponse<Object> postBloodBank(@RequestBody BloodBank bloodBank, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postBloodBank(bloodBank, token.substring(7));
+        return waloService.postBloodBank(bloodBank, token);
     }
 
     @PostMapping(value= "/funds")
     public BaseResponse<Object> postFunds(@RequestBody Funds funds, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postFunds(funds,token.substring(7));
+        return waloService.postFunds(funds,token);
     }
 }

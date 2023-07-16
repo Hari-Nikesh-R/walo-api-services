@@ -16,12 +16,12 @@ public class DiscussionController {
 
     @PostMapping(value = "/post-article")
     public BaseResponse<Object> postArticle(@RequestBody PostArticles postArticles, @RequestHeader(AUTHORIZATION) String token) {
-        return waloService.postArticle(postArticles, token.substring(7));
+        return waloService.postArticle(postArticles, token);
     }
 
     @PostMapping(value = "/legal-discussion")
     public BaseResponse<Object> postLegalDiscussion(@RequestBody LegalDiscussion legalDiscussion,  @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postLegalDiscussion(legalDiscussion, token.substring(7));
+        return waloService.postLegalDiscussion(legalDiscussion, token);
     }
 
 }

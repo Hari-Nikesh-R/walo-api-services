@@ -14,7 +14,7 @@ public class TokenValidator {
     @Autowired
     RestTemplate restTemplate;
 
-    private final String AUTHENTICATION_URL = "http://localhost:8089";
+    private final String AUTHENTICATION_URL = "http://192.168.150.7:8089";
     private final String GET_EMAIL = "/user/get-email";
     private TokenValidator(){}
     private static TokenValidator instance;

@@ -4,10 +4,7 @@ import com.sns.waloapiservices.dtos.BaseResponse;
 import com.sns.waloapiservices.model.PostArticles;
 import com.sns.waloapiservices.services.WaloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/discussion")
@@ -17,7 +14,7 @@ public class DiscussionController {
     private WaloService waloService;
 
     @PostMapping(value = "/post-article")
-    public BaseResponse<Object> postArticle(@ResponseBody PostArticles postArticles) {
+    public BaseResponse<Object> postArticle(@RequestBody PostArticles postArticles) {
         return waloService.postArticle(postArticles);
     }
 }

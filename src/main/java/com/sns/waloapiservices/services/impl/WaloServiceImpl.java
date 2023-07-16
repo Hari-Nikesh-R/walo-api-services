@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.security.PublicKey;
 
 @Service
-public class WaloServiceImpl implements WaloService {
+    public class WaloServiceImpl implements WaloService {
 
     @Autowired
     private PostArticleRepository postArticleRepository;
@@ -29,7 +29,7 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalPostArticles).errorDesc(null).result("Posted article").build();
         }
         catch (Exception exception) {
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
 
@@ -44,7 +44,7 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalAccidents).errorDesc(null).result("Reported Accidents").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
 
@@ -59,7 +59,18 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalAppliedJobs).errorDesc(null).result("Apply for Jobs").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
+        }
+    }
+
+    @Override
+    public BaseResponse<Object> getAppliedJobs(String token) {
+        try{
+            tokenValidator.validateByToken(token);
+            return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(appliedJobsRepository.findAll()).errorDesc(null).result("fetched Jobs").build();
+        }
+        catch (Exception exception) {
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
 
@@ -74,7 +85,7 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalBankDetails).errorDesc(null).result("Bank Details").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
 
@@ -89,7 +100,7 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalBloodBank).errorDesc(null).result("Bank Details").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
     @Autowired
@@ -103,7 +114,7 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalFunds).errorDesc(null).result("Bank Details").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
     }
 
@@ -118,7 +129,13 @@ public class WaloServiceImpl implements WaloService {
             return BaseResponse.builder().statusCode(HttpStatus.OK.value()).data(optionalLegalDiscussion).errorDesc(null).result("Legal Discussion").build();
         }
         catch (Exception exception){
-            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(exception.getLocalizedMessage()).result(exception.getMessage()).build();
+            return BaseResponse.builder().statusCode(HttpStatus.FORBIDDEN.value()).data(null).errorDesc(unauthorizedException(exception)).result(exception.getMessage()).build();
         }
+    }
+    private String unauthorizedException(Exception exception) {
+        if(exception.getLocalizedMessage().contains("401")){
+            return "Not  Authorized";
+        }
+        return exception.getLocalizedMessage();
     }
 }

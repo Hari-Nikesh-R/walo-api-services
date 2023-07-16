@@ -9,6 +9,8 @@ public interface WaloService {
 
     BaseResponse<Object> postAppliedJobs(AppliedJobs appliedJobs, String token);
 
+    BaseResponse<Object> getAppliedJobs(String token);
+
     BaseResponse<Object> postBankDetails(BankDetails bankDetails, String token);
 
     BaseResponse<Object> postBloodBank(BloodBank bloodBank, String token);

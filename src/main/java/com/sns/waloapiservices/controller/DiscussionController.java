@@ -19,31 +19,6 @@ public class DiscussionController {
         return waloService.postArticle(postArticles, token.substring(7));
     }
 
-    @PostMapping(value ="/accident")
-    public BaseResponse<Object> postAccident(@RequestBody Accidents accident, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postAccidents(accident, token.substring(7));
-    }
-
-    @PostMapping(value = "/applied-jobs")
-    public BaseResponse<Object> postAppliedJobs(@RequestBody AppliedJobs appliedJobs, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postAppliedJobs(appliedJobs, token.substring(7));
-    }
-
-    @PostMapping(value = "/bank-details")
-    public BaseResponse<Object> postBankDetails(@RequestBody BankDetails bankDetails, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postBankDetails(bankDetails,token.substring(7));
-    }
-
-    @PostMapping(value ="/blood-bank")
-    public BaseResponse<Object> postBloodBank(@RequestBody BloodBank bloodBank, @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postBloodBank(bloodBank, token.substring(7));
-    }
-
-    @PostMapping(value= "/funds")
-    public BaseResponse<Object> postFunds(@RequestBody Funds funds,  @RequestHeader(AUTHORIZATION) String token){
-        return waloService.postFunds(funds,token.substring(7));
-    }
-
     @PostMapping(value = "/legal-discussion")
     public BaseResponse<Object> postLegalDiscussion(@RequestBody LegalDiscussion legalDiscussion,  @RequestHeader(AUTHORIZATION) String token){
         return waloService.postLegalDiscussion(legalDiscussion, token.substring(7));
